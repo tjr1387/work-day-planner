@@ -48,10 +48,13 @@ textarea {
 }
 
 /* The left hand column showing the hour */
+    /* Added some font styling */
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 /* These three classes are for color-coordinating the textareas of past, future, present */
@@ -79,7 +82,10 @@ textarea {
   color: white;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
+/* Changed this slightly, as I chose to use a span with a UTF-icon instead of a separate image */
+.saveBtn:hover {
+  font-size: 18px;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  opacity: 80%;
 }

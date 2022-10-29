@@ -23,22 +23,21 @@
     <title>Work Day Scheduler</title>
   </head>
 
+    <!-- In a few of these body elemnts, I added a couple bootstrap preset properties, mainly for spacing -->
+
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead">
+      <p id="currentDay" class="lead p-2 font-weight-bold">
         <!-- Will use JS/Moment to fill this element out with the current date -->
       </p>
     </header>
-    <div class="container">
-      <!-- Timeblocks go here -->
+    <main class="container pb-5">
 
-      <!-- Either make this container div a 'main' or just put 'main' content inside it -- prbably the latter -->
-      <!-- Because its the 'workday', 9AM-5PM I can probly put the table (or something similar) here into the HTML -->
-        <!-- I don't need to use JS to create the 8-9 rows for the primary content, though I could as a loop -->
-      <!-- Each row (hour will have a column for hte time, a textarea (probably) big middle column for text, then a small 'button - save' column on the right) -->
-    </div>
+      <!-- Timeblocks are being generated in the JS file -->
+
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
