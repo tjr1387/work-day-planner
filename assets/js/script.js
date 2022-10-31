@@ -9,7 +9,7 @@ const currentHour = moment().format('hA');
 
 // Function definition(s)
 
-// Helper function for the build loop; takes in the hour and returns one of three classes (past, present, future) for the bg-color of the textareas
+// Helper function for the creation loop; takes in the hour and returns one of the three classes (past, present, future) for the bg-color of the textareas
     // Big thanks to the 'isBefore' and 'isAfter' methods of Moment!
 function assignAreaColor(hour) {
     const loopHour = moment(hour, 'hA');
@@ -41,10 +41,8 @@ for (hour of hoursArray) {
 
     // Calls the helper function to assign a bg-color to the textarea
     textAreaEl.addClass(`${assignAreaColor(hourEl[0].innerText)}`);
-
     // Creates/adds the disk icon to the save element;
     saveEl.append($('<span>').html('&#128190').addClass('saveIcon'));
-
     // Adds the three columns to the row
     rowEl.append(hourEl, textAreaEl, saveEl);
     // Adds the row to the container
@@ -77,6 +75,7 @@ if (loadedPlans) {
 // Event listener for the 'save this textarea's value' click event
     // It's on the parent (row), but only activates when the save button (or it's child icon) is clicked
     // It then jumps back into the parent (row) to grab the hour and textarea's value; then saves them to localStorage
+    // Because a user may want to erase a plan, this _will_ save empty textareas in storage; not ideal, but oh well, there's a maximum length of nine for the storage array
 $('.row').click(function (event) {
     const saveText = event.target;
     if (saveText.matches('.saveBtn') || saveText.matches('.saveIcon')) {

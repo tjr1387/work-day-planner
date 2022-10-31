@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-/* This is the element where the tasks/appts will go */
+/* This is the element where the plans' text will go */
 textarea {
   background: transparent;
   border: none;
@@ -24,12 +24,12 @@ textarea {
   border-bottom: 10px solid black;
 }
 
-/* Not sure what this does */
+/* Not sure what these next two classes do;
+   I see them nowhere in the HTML, nor did using them seem to be anything I wanted */
 .description {
   white-space: pre-wrap;
 }
 
-/* The left-hand column showing the hour */
 .time-block {
   text-align: center;
   border-radius: 15px;
@@ -80,7 +80,7 @@ textarea {
   color: white;
 }
 
-/* Changed this slightly, as I chose to use a span with a UTF-icon instead of a separate image */
+/* Changed this slightly, as I chose to use a span (child) with a UTF-icon instead of a separate image */
 .saveBtn:hover {
   font-size: 18px;
   transition: all 0.3s ease-in-out;
