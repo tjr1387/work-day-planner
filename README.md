@@ -15,7 +15,7 @@ This work day planner is pretty self-explanatory. The user is presented with the
 
 Screenshot, taken at approx. 4:15PM on 10/31/22: ![The full page, taken at 4-something PM](/assets/my-mockup.png?raw=true)
 
-Link to live site: 
+Link to live site: https://tjr1387.github.io/work-day-planner/
 
 
 ## Flaws/Comments
