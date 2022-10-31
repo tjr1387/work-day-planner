@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />     <!-- Add a CSS reset -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -23,19 +23,23 @@
     <title>Work Day Scheduler</title>
   </head>
 
-    <!-- In a few of these body elemnts, I added a couple bootstrap preset properties, mainly for spacing -->
+    <!-- In a few of these body elements, I added a couple Bootstrap classes, mainly for spacing -->
 
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead p-2 font-weight-bold">
+      <p id="currentDay" class="lead pt-3 font-weight-bold">
         <!-- Will use JS/Moment to fill this element out with the current date -->
       </p>
     </header>
-    <main class="container pb-5">
+    <main class="container py-4">
 
       <!-- Timeblocks are being generated in the JS file -->
+        <!-- Structure of each row will be a 'section.row', with three children: -->
+            <!-- 'p' left column ('.hour') -->
+            <!-- 'textarea' middle column (user can add tasks/appts) -->
+            <!-- 'div' left column ('.saveBtn') -->
 
     </main>
 
