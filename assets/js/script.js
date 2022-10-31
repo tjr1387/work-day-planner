@@ -1,6 +1,3 @@
-// Element selectors
-
-
 // Global Variables
 
     // Array of all hours (a row for each) for the creation loop
@@ -10,7 +7,7 @@ const hoursArray = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '
 const currentHour = moment().format('hA');
 
 
-// Functions/Logic
+// Function definition(s)
 
 // Helper function for the build loop; takes in the hour and returns one of three classes (past, present, future) for the bg-color of the textareas
     // Big thanks to the 'isBefore' and 'isAfter' methods of Moment!
@@ -27,13 +24,15 @@ function assignAreaColor(hour) {
 }
 
 
+// Main logic
+
 // Sets the current date to today and formats it, plopping it into the header element
 $("#currentDay").text(moment().format('MMMM Do, YYYY'));
 
 // This loop builds the main content row by row, adding styling along the way
 for (hour of hoursArray) {
     // Creates the row and its columns, with some bootstrap classes, as well the hour label (from array)
-    const rowEl = $('<section>').addClass('row');
+    const rowEl = $('<section>').addClass('row hour-row');  // giving this a seoond class for later query selection (selecting ALL with class 'row' seems like bad practice)
         // The last two classes of the hour element I added for positioning
     const hourEl = $('<p>').addClass('hour col-1 text-right pt-3').text(hour);
     const textAreaEl = $('<textarea>').addClass('col-10');
@@ -52,8 +51,27 @@ for (hour of hoursArray) {
     $('.container').append(rowEl);
 }
 
-// Load up (persist) the elements with text from localStorage
-    // Once this is done, I am done!
+
+// On page (re)load, bring up local storage
+const loadedPlans = JSON.parse(localStorage.getItem("plans"));
+
+// If any exists, load up (persist) the elements with the text from stored plans
+if (loadedPlans) {
+    // Select an array of all the hour rows
+    const hourRowArray = $('.hour-row');
+    for (hourRow of hourRowArray) {
+        // Grabbing the relevant children (the hour's text and the textarea element)
+        const childHour = hourRow.children[0].innerText;
+        let childTextEl = hourRow.children[1];
+        // Loop through the now-parsed object array from storage
+        for (storageObj of loadedPlans) {
+            // If there is a stored entry for this particular hour, set the textarea to the corresponding value
+            if (childHour === storageObj.time) {
+                childTextEl.value = storageObj.text;
+            }
+        }
+    }
+}
 
 
 // Event listener for the 'save this textarea's value' click event
@@ -65,32 +83,29 @@ $('.row').click(function (event) {
         // Grabs the hour and the plan text
         const hour = event.currentTarget.children[0].innerText;
         const planText = event.currentTarget.children[1].value;
-        // Everything that follows will only run if there's actually text in the textarea
-        if (planText) {
-            // Brings up local storage
-            const storedPlans = JSON.parse(localStorage.getItem("plans"));
-            // Builds an object to be put into storage (though it won't get used in the 'replace' case ahead..)
-            const entry = {time: hour, text: planText}
-            if (!storedPlans) {
-                // If there's nothing in local storage, store the object we just built in an array
-                localStorage.setItem("plans", JSON.stringify([entry]));
-            } else {
-                let isReplaced = false;     // Set a flag to be toggled if theres an entry for the hour
-                // If there is storage, look through its array to see if there's already an entry (object) for this particular hour
-                for (let planObj of storedPlans) {
-                    // If this hour already has an entry, we'll overwrite it; just replace the text value with the current one; don't need the object we built
-                    if (planObj.time === hour) {
-                        planObj.text = planText;
-                        isReplaced = true;      // Change the flag to reflect that an entry was found and replaced
-                    }
+        // Brings up local storage
+        const storedPlans = JSON.parse(localStorage.getItem("plans"));
+        // Builds an object to be put into storage (though it won't get used in the 'replace' case ahead..)
+        const entry = {time: hour, text: planText}
+        if (!storedPlans) {
+            // If there's nothing in local storage, store the object we just built in an array
+            localStorage.setItem("plans", JSON.stringify([entry]));
+        } else {
+            let isReplaced = false;     // Set a flag to be toggled if theres an entry for the hour
+            // If there is storage, look through its array to see if there's already an entry (object) for this particular hour
+            for (let planObj of storedPlans) {
+                // If this hour already has an entry, we'll overwrite it; just replace the text value with the current one; don't need the object we built
+                if (planObj.time === hour) {
+                    planObj.text = planText;
+                    isReplaced = true;      // Change the flag to reflect that an entry was found and replaced
                 }
-                // If the current time wasn't found (therefore no update/replace was made), then just push the object to the storage array
-                if (!isReplaced) {
-                    storedPlans.push(entry);
-                }
-                // Put our changed array (whether we pushed to it OR changed an existing entry) back into localStorage
-                localStorage.setItem("plans", JSON.stringify(storedPlans));
             }
+            // If the current time wasn't found (therefore no update/replace was made), then just push the object to the storage array
+            if (!isReplaced) {
+                storedPlans.push(entry);
+            }
+            // Put our changed array (whether we pushed to it OR changed an existing entry) back into localStorage
+            localStorage.setItem("plans", JSON.stringify(storedPlans));
         }
     }
 });
