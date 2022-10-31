@@ -13,7 +13,7 @@ N/A
 
 This work day planner is pretty self-explanatory. The user is presented with the current date and a table-like layout where each row represents an hour of the work day (9AM-5PM). There is a field in which to enter plans, appointments or other tasks and then save them by clicking the button-like blue tab to its right. All saved tasks are reflected in local storage, and will persist upon reload. Also, the text areas are color coded to reflect the current hour -- past hours are grey, the current hour is red and future hours are green. If the user clears/empties an entry, that will also be reflected/persisted in local storage.
 
-Screenshot(s): ![The full page, taken at 4-something PM](/assets/my-mockup.png?raw=true)
+Screenshot, taken at approx. 4:15PM on 10/31/22: ![The full page, taken at 4-something PM](/assets/my-mockup.png?raw=true)
 
 Link to live site: 
 
@@ -25,7 +25,7 @@ While the page functions as it should, the code structure is probably not the mo
 ## Credits
 
 #### Google Fonts (for 'Open Sans')
-#### Bootstrap
+#### Bootstrap (for the easy to use col/grid set-up, and some spacing)
 #### jQuery (so fun and _so_ much nicer than vanilla JS for element stuff)
 
 ## License
